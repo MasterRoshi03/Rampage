@@ -48,7 +48,11 @@
 31,arug_cas03,Horn,Manager#arug_cas03			// kRO : Horn
 32,arug_cas04,Gefn,Manager#arug_cas04			// kRO : Gefn
 33,arug_cas05,Bandis,Manager#arug_cas05			// kRO : Bandis
-
+100,guild_vs1,King of Emperium Hill,KoE#guild_vs1
+101,valkyrie_vs,King of Emperium Hill,KoE#valkyrie_vs
+102,payg_vs,King of Emperium Hill,KoE#payg_vs
+103,freya_vs,King of Emperium Hill,KoE#freya_vs
+104,ra_koe,King of Emperium Hill,KoE#ra_koe
 // WOE TE castle
 34,te_aldecas1,Kafragarten 1,Manager_TE#Glaris
 35,te_aldecas2,Kafragarten 2,Manager_TE#Defolty

@@ -1954,7 +1954,11 @@ ACMD_FUNC(go)
 		{ MAP_GEFFEN,      119,  59 }, //  2=Geffen
 		{ MAP_PAYON,       162, 233 }, //  3=Payon
 		{ MAP_ALBERTA,     192, 147 }, //  4=Alberta
+#ifdef RENEWAL
+		{ MAP_IZLUDE,      128, 146 }, //  5=Izlude (Renewal)
+#else
 		{ MAP_IZLUDE,      128, 114 }, //  5=Izlude
+#endif
 		{ MAP_ALDEBARAN,   140, 131 }, //  6=Al de Baran
 		{ MAP_LUTIE,       147, 134 }, //  7=Lutie
 		{ MAP_COMODO,      209, 143 }, //  8=Comodo
@@ -1964,7 +1968,11 @@ ACMD_FUNC(go)
 		{ MAP_UMBALA,       89, 157 }, // 12=Umbala
 		{ MAP_NIFLHEIM,     21, 153 }, // 13=Niflheim
 		{ MAP_LOUYANG,     217,  40 }, // 14=Louyang
-		{ MAP_NOVICE,       53, 114 }, // 15=Training Grounds
+#ifdef RENEWAL
+		{ MAP_NOVICE,       18, 26  }, // 15=Training Grounds (Renewal)
+#else
+		{ MAP_NOVICE,       53, 111 }, // 15=Training Grounds
+#endif
 		{ MAP_JAIL,         23,  61 }, // 16=Prison
 		{ MAP_JAWAII,      249, 127 }, // 17=Jawaii
 		{ MAP_AYOTHAYA,    151, 117 }, // 18=Ayothaya

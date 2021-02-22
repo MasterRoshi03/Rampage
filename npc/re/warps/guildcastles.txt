@@ -97,7 +97,7 @@ S_Warp:
 		end;
 	}
 
-	if (WoeTETimeStart == 1) {
+	if (WoeTETimeStart(3600) == 1) {
 		if (!.@guild_id || !.@my_guild_id) {
 			mes "It's time for preparing to WoE. Only Alliance guild is able to enter.";
 			close;

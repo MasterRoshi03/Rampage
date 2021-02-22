@@ -477,6 +477,7 @@
 	export_constant(MF_NOEXP);
 	export_constant(MF_PRIVATEAIRSHIP_SOURCE);
 	export_constant(MF_PRIVATEAIRSHIP_DESTINATION);
+	export_constant(MF_KINGOFEMP);
 	export_constant(MF_SKILL_DURATION);
 
 	/* setcell types */
