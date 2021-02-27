@@ -139,7 +139,7 @@ switch(select((.@active ? "^0055FF~ Enter King of Emperium^000000":"")+":~ Check
 		goto L_Menu1;
 	case 4:
 		mes "[ King of Emperium ]";
-		mes "The King of Emperium hill";
+		mes "The King of Emperium";
 		mes "is a guild royal rumble event";
 		mes "in which the strongest guild";
 		mes "will receive tons of awards and glory.";
@@ -180,7 +180,7 @@ end;
 
 OnSchedule:
 	freeloop(1);
-	for(.@j=0;.@j<3;.@j++){
+	for(.@j=0;.@j<7;.@j++){
 		mes "[ King of Emperium ]";
 		mes "King of Emperium Schedules";
 		mes "^0055FF"+.Days$[.@j]+"^000000 :";
@@ -209,7 +209,7 @@ OnInit:
 						
 	setarray .Warp2$[0],"7,49,50,7,92,50,50,92";	//Owner Warps
 						
-	setarray .Days$[0],"Monday","Wednesday","Friday";
+	setarray .Days$[0],"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday";
 	////////////////////////////////////////////////////
 	//CONSTANTS! DO NOT TOUCH WITHOUT KNOWING ANYTHING//
 	////////////////////////////////////////////////////
@@ -315,7 +315,7 @@ if(getd("$koe_"+strnpcinfo(2)))
 initnpctimer strnpcinfo(0);
 SetCastleData strnpcinfo(2),CD_GUILD_ID, getcharid(2);
 setd "$koe_"+strnpcinfo(2), getcharid(2);
-announce "The current King of Emperium Hill is the [" + strcharinfo(2) + "] guild.", 0;
+announce "The current King of Emperium is the [" + strcharinfo(2) + "] guild.", 0;
 donpcevent "::OnRevKoE";
 maprespawnguildid strnpcinfo(2), getd("$koe_"+strnpcinfo(2)), 6;
 sleep 500;
@@ -492,7 +492,7 @@ OnInit:
 	set .enableBarricade,1;	//Enable Barricade?
 	
 	//Geffen
-	setarray .warpbreak_guild_vs1[0],51,51;
+	setarray .warpbreak_guild_vs1[0],50,50;
 	setarray .walkable_guild_vs1[0],42,57,57,42;
 	setarray .barx_guild_vs1[0],42,42,57,57;
 	setarray .bary_guild_vs1[0],57,42,42,57;
@@ -532,23 +532,58 @@ OnMenu:
 
 // Flags
 -	script	::koe_flag	GUILD_FLAG,{
-	if (!getd("$koe_"+strnpcinfo(2))) end;
-	mes "[King of Emperium Hill]";
-	mes "The Current King of Emperium Hill at ^0055FF"+strnpcinfo(1)+"^000000 is the [ ^0055FF"+ getguildname(getd("$koe_"+strnpcinfo(2))) +"^000000 ] guild.";
-	close;
-OnAgitInit: //Uncomment this line to make the emblem stay after @reloadscript
+	
+	
+
+
+	set .@GID, GetCastleData("guild_vs1",1);
+
+	mes "The Current King of Emperium is the ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+
+	
+		
+	
+	if (getcharid(2) == .@GID) {
+		next;
+		mes "As one of the member of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+		mes "Do you wish to?";
+		next;
+		
+		if(getcharid(2) == GetCastleData("guild_vs1",1)) {
+			if (select("Go inside of the Barricade!" , "Go outside of the Barricade!") == 1) {
+				warp "guild_vs1",50,50;
+				end;
+			}
+			else {
+			warp "guild_vs1",50,36;
+				end;
+			}
+			end;
+		}
+		close;
+	}
+close;
+
 OnRevKoE:
-	if(getd("$koe_"+strnpcinfo(2)))
-		flagemblem getd("$koe_"+strnpcinfo(2));
+	FlagEmblem GetCastleData("guild_vs1",1);
 	end;
 }
+guild_vs1,49,61,0	duplicate(koe_flag)	King of Emperium #1	722
+guild_vs1,38,49,2	duplicate(koe_flag)	King of Emperium #2	722
+guild_vs1,49,38,4	duplicate(koe_flag)	King of Emperium #3	722
+guild_vs1,61,49,6	duplicate(koe_flag)	King of Emperium #4	722
 
-guild_vs1,49,61,0	duplicate(koe_flag)	King of Emperium Event#1	722
-guild_vs1,38,49,2	duplicate(koe_flag)	King of Emperium Event#2	722
-guild_vs1,49,38,4	duplicate(koe_flag)	King of Emperium Event#3	722
-guild_vs1,61,49,6	duplicate(koe_flag)	King of Emperium Event#4	722
+//FLAG FOR DISPLAY
+prontera,155,215,0	script	King of Emperium #guild_vs1	GUILD_FLAG,{
 
-prontera,155,215,0	duplicate(koe_flag)	King of Emperium #guild_vs1	GUILD_FLAG
+	mes "The Current King of Emperium is the ^ff0000"+ getguildname(getd("$koe_"+strnpcinfo(2))) +"^000000 Guild.";
+	close;
+	
+OnRevKoE:
+	FlagEmblem GetCastleData("guild_vs1",1);
+	end;
+
+}
 
 
 guild_vs1	mapflag	gvg
